@@ -24,26 +24,37 @@ export default class GraphVertex {
   }
 
   addEdge(edge: GraphEdge): GraphVertex {
+    this.edges.push(edge);
     return this;
   }
 
-  deleteEdge(edge: GraphEdge) {}
+  deleteEdge(edge: GraphEdge): void {
+    const index = this.edges.findIndex(ed => ed === edge);
+    this.edges.splice(index, 1);
+  }
 
-  deleteAllEdges() {}
+  deleteAllEdges(): void {
+    this.edges = [];
+  }
 
   hasEdge(edge: GraphEdge): boolean {
-    return false;
+    return this.edges.includes(edge);
   }
 
   getNeighbors(): Array<GraphVertex> {
-    return [];
+    return this.edges.map(s => s.endVertex);
   }
 
   hasNeighbor(vertex: GraphVertex): boolean {
-    return false;
+    return this.getNeighbors().includes(vertex);
   }
 
-  findEdge(vertex: GraphVertex) {}
+  findEdge(vertex: GraphVertex): GraphEdge | null {
+    const edge = this.edges.find(s => s.endVertex === vertex);
+    return edge ? edge : null;
+  }
 
-  getDegree() {}
+  getDegree() {
+    return this.getNeighbors().length;
+  }
 }
