@@ -12,11 +12,11 @@ export default class GraphVertex {
   }
 
   toString(): string {
-    return this.value.toString();
+    return this.value;
   }
 
   getKey(): string {
-    return this.value.toString();
+    return this.value;
   }
 
   getEdges(): Array<GraphEdge> {
@@ -42,7 +42,9 @@ export default class GraphVertex {
   }
 
   getNeighbors(): Array<GraphVertex> {
-    return this.edges.map(s => s.endVertex);
+    return this.edges.map(s =>
+      s.endVertex !== this ? s.endVertex : s.startVertex
+    );
   }
 
   hasNeighbor(vertex: GraphVertex): boolean {

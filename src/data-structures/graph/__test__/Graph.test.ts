@@ -1,28 +1,27 @@
-import Graph from '../Graph';
-import GraphVertex from '../GraphVertex';
-import GraphEdge from '../GraphEdge';
+import Graph from "../Graph";
+import GraphVertex from "../GraphVertex";
+import GraphEdge from "../GraphEdge";
+import checkNull from "../../../utils/checkNull";
 
-describe('Graph', () => {
-  it('should add vertices to graph', () => {
+describe("Graph", () => {
+  it("should add vertices to graph", () => {
     const graph = new Graph();
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
 
-    graph
-      .addVertex(vertexA)
-      .addVertex(vertexB);
+    graph.addVertex(vertexA).addVertex(vertexB);
 
-    expect(graph.toString()).toBe('A,B');
+    expect(graph.toString()).toBe("A,B");
     expect(graph.getVertexByKey(vertexA.getKey())).toEqual(vertexA);
     expect(graph.getVertexByKey(vertexB.getKey())).toEqual(vertexB);
   });
 
-  it('should add edges to undirected graph', () => {
+  it("should add edges to undirected graph", () => {
     const graph = new Graph();
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
 
@@ -35,26 +34,26 @@ describe('Graph', () => {
     const graphVertexA = graph.getVertexByKey(vertexA.getKey());
     const graphVertexB = graph.getVertexByKey(vertexB.getKey());
 
-    expect(graph.toString()).toBe('A,B');
+    expect(graph.toString()).toBe("A,B");
     expect(graphVertexA).toBeDefined();
     expect(graphVertexB).toBeDefined();
 
-    expect(graph.getVertexByKey('not existing')).toBeUndefined();
+    expect(graph.getVertexByKey("not existing")).toBeUndefined();
 
-    expect(graphVertexA.getNeighbors().length).toBe(1);
-    expect(graphVertexA.getNeighbors()[0]).toEqual(vertexB);
-    expect(graphVertexA.getNeighbors()[0]).toEqual(graphVertexB);
+    expect(checkNull(graphVertexA).getNeighbors().length).toBe(1);
+    expect(checkNull(graphVertexA).getNeighbors()[0]).toEqual(vertexB);
+    expect(checkNull(graphVertexA).getNeighbors()[0]).toEqual(graphVertexB);
 
-    expect(graphVertexB.getNeighbors().length).toBe(1);
-    expect(graphVertexB.getNeighbors()[0]).toEqual(vertexA);
-    expect(graphVertexB.getNeighbors()[0]).toEqual(graphVertexA);
+    expect(checkNull(graphVertexB).getNeighbors().length).toBe(1);
+    expect(checkNull(graphVertexB).getNeighbors()[0]).toEqual(vertexA);
+    expect(checkNull(graphVertexB).getNeighbors()[0]).toEqual(graphVertexA);
   });
 
-  it('should add edges to directed graph', () => {
+  it("should add edges to directed graph", () => {
     const graph = new Graph(true);
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
 
@@ -63,23 +62,23 @@ describe('Graph', () => {
     const graphVertexA = graph.getVertexByKey(vertexA.getKey());
     const graphVertexB = graph.getVertexByKey(vertexB.getKey());
 
-    expect(graph.toString()).toBe('A,B');
+    expect(graph.toString()).toBe("A,B");
     expect(graphVertexA).toBeDefined();
     expect(graphVertexB).toBeDefined();
 
-    expect(graphVertexA.getNeighbors().length).toBe(1);
-    expect(graphVertexA.getNeighbors()[0]).toEqual(vertexB);
-    expect(graphVertexA.getNeighbors()[0]).toEqual(graphVertexB);
+    expect(checkNull(graphVertexA).getNeighbors().length).toBe(1);
+    expect(checkNull(graphVertexA).getNeighbors()[0]).toEqual(vertexB);
+    expect(checkNull(graphVertexA).getNeighbors()[0]).toEqual(graphVertexB);
 
-    expect(graphVertexB.getNeighbors().length).toBe(0);
+    expect(checkNull(graphVertexB).getNeighbors().length).toBe(0);
   });
 
-  it('should find edge by vertices in undirected graph', () => {
+  it("should find edge by vertices in undirected graph", () => {
     const graph = new Graph();
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
 
     const edgeAB = new GraphEdge(vertexA, vertexB, 10);
 
@@ -90,19 +89,19 @@ describe('Graph', () => {
     const graphEdgeAC = graph.findEdge(vertexA, vertexC);
     const graphEdgeCA = graph.findEdge(vertexC, vertexA);
 
-    expect(graphEdgeAC).toBeNull();
-    expect(graphEdgeCA).toBeNull();
+    expect(graphEdgeAC).toBeUndefined();
+    expect(graphEdgeCA).toBeUndefined();
     expect(graphEdgeAB).toEqual(edgeAB);
     expect(graphEdgeBA).toEqual(edgeAB);
-    expect(graphEdgeAB.weight).toBe(10);
+    expect(checkNull(graphEdgeAB).weight).toBe(10);
   });
 
-  it('should find edge by vertices in directed graph', () => {
+  it("should find edge by vertices in directed graph", () => {
     const graph = new Graph(true);
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
 
     const edgeAB = new GraphEdge(vertexA, vertexB, 10);
 
@@ -113,26 +112,24 @@ describe('Graph', () => {
     const graphEdgeAC = graph.findEdge(vertexA, vertexC);
     const graphEdgeCA = graph.findEdge(vertexC, vertexA);
 
-    expect(graphEdgeAC).toBeNull();
-    expect(graphEdgeCA).toBeNull();
-    expect(graphEdgeBA).toBeNull();
+    expect(graphEdgeAC).toBeUndefined();
+    expect(graphEdgeCA).toBeUndefined();
+    expect(graphEdgeBA).toBeUndefined();
     expect(graphEdgeAB).toEqual(edgeAB);
-    expect(graphEdgeAB.weight).toBe(10);
+    expect(checkNull(graphEdgeAB).weight).toBe(10);
   });
 
-  it('should return vertex neighbors', () => {
+  it("should return vertex neighbors", () => {
     const graph = new Graph(true);
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeAC = new GraphEdge(vertexA, vertexC);
 
-    graph
-      .addEdge(edgeAB)
-      .addEdge(edgeAC);
+    graph.addEdge(edgeAB).addEdge(edgeAC);
 
     const neighbors = graph.getNeighbors(vertexA);
 
@@ -141,36 +138,32 @@ describe('Graph', () => {
     expect(neighbors[1]).toEqual(vertexC);
   });
 
-  it('should throw an error when trying to add edge twice', () => {
+  it("should throw an error when trying to add edge twice", () => {
     function addSameEdgeTwice() {
       const graph = new Graph(true);
 
-      const vertexA = new GraphVertex('A');
-      const vertexB = new GraphVertex('B');
+      const vertexA = new GraphVertex("A");
+      const vertexB = new GraphVertex("B");
 
       const edgeAB = new GraphEdge(vertexA, vertexB);
 
-      graph
-        .addEdge(edgeAB)
-        .addEdge(edgeAB);
+      graph.addEdge(edgeAB).addEdge(edgeAB);
     }
 
     expect(addSameEdgeTwice).toThrow();
   });
 
-  it('should return the list of all added edges', () => {
+  it("should return the list of all added edges", () => {
     const graph = new Graph(true);
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeBC = new GraphEdge(vertexB, vertexC);
 
-    graph
-      .addEdge(edgeAB)
-      .addEdge(edgeBC);
+    graph.addEdge(edgeAB).addEdge(edgeBC);
 
     const edges = graph.getAllEdges();
 
@@ -179,13 +172,13 @@ describe('Graph', () => {
     expect(edges[1]).toEqual(edgeBC);
   });
 
-  it('should calculate total graph weight for default graph', () => {
+  it("should calculate total graph weight for default graph", () => {
     const graph = new Graph();
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeBC = new GraphEdge(vertexB, vertexC);
@@ -201,13 +194,13 @@ describe('Graph', () => {
     expect(graph.getWeight()).toBe(0);
   });
 
-  it('should calculate total graph weight for weighted graph', () => {
+  it("should calculate total graph weight for weighted graph", () => {
     const graph = new Graph();
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
 
     const edgeAB = new GraphEdge(vertexA, vertexB, 1);
     const edgeBC = new GraphEdge(vertexB, vertexC, 2);
@@ -223,12 +216,12 @@ describe('Graph', () => {
     expect(graph.getWeight()).toBe(10);
   });
 
-  it('should be possible to delete edges from graph', () => {
+  it("should be possible to delete edges from graph", () => {
     const graph = new Graph();
 
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeBC = new GraphEdge(vertexB, vertexC);
@@ -248,13 +241,13 @@ describe('Graph', () => {
     expect(graph.getAllEdges()[1].getKey()).toBe(edgeAC.getKey());
   });
 
-  it('should should throw an error when trying to delete not existing edge', () => {
+  it("should should throw an error when trying to delete not existing edge", () => {
     function deleteNotExistingEdge() {
       const graph = new Graph();
 
-      const vertexA = new GraphVertex('A');
-      const vertexB = new GraphVertex('B');
-      const vertexC = new GraphVertex('C');
+      const vertexA = new GraphVertex("A");
+      const vertexB = new GraphVertex("B");
+      const vertexC = new GraphVertex("C");
 
       const edgeAB = new GraphEdge(vertexA, vertexB);
       const edgeBC = new GraphEdge(vertexB, vertexC);
@@ -266,11 +259,11 @@ describe('Graph', () => {
     expect(deleteNotExistingEdge).toThrowError();
   });
 
-  it('should be possible to reverse graph', () => {
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
+  it("should be possible to reverse graph", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeAC = new GraphEdge(vertexA, vertexC);
@@ -282,7 +275,7 @@ describe('Graph', () => {
       .addEdge(edgeAC)
       .addEdge(edgeCD);
 
-    expect(graph.toString()).toBe('A,B,C,D');
+    expect(graph.toString()).toBe("A,B,C,D");
     expect(graph.getAllEdges().length).toBe(3);
     expect(graph.getNeighbors(vertexA).length).toBe(2);
     expect(graph.getNeighbors(vertexA)[0].getKey()).toBe(vertexB.getKey());
@@ -294,7 +287,7 @@ describe('Graph', () => {
 
     graph.reverse();
 
-    expect(graph.toString()).toBe('A,B,C,D');
+    expect(graph.toString()).toBe("A,B,C,D");
     expect(graph.getAllEdges().length).toBe(3);
     expect(graph.getNeighbors(vertexA).length).toBe(0);
     expect(graph.getNeighbors(vertexB).length).toBe(1);
@@ -305,11 +298,11 @@ describe('Graph', () => {
     expect(graph.getNeighbors(vertexD)[0].getKey()).toBe(vertexC.getKey());
   });
 
-  it('should return vertices indices', () => {
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
+  it("should return vertices indices", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeBC = new GraphEdge(vertexB, vertexC);
@@ -328,15 +321,15 @@ describe('Graph', () => {
       A: 0,
       B: 1,
       C: 2,
-      D: 3,
+      D: 3
     });
   });
 
-  it('should generate adjacency matrix for undirected graph', () => {
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
+  it("should generate adjacency matrix for undirected graph", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeBC = new GraphEdge(vertexB, vertexC);
@@ -355,15 +348,15 @@ describe('Graph', () => {
       [Infinity, 0, Infinity, Infinity],
       [0, Infinity, 0, 0],
       [Infinity, 0, Infinity, 0],
-      [Infinity, 0, 0, Infinity],
+      [Infinity, 0, 0, Infinity]
     ]);
   });
 
-  it('should generate adjacency matrix for directed graph', () => {
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
+  it("should generate adjacency matrix for directed graph", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
 
     const edgeAB = new GraphEdge(vertexA, vertexB, 2);
     const edgeBC = new GraphEdge(vertexB, vertexC, 1);
@@ -382,7 +375,7 @@ describe('Graph', () => {
       [Infinity, 2, Infinity, Infinity],
       [Infinity, Infinity, 1, 7],
       [Infinity, Infinity, Infinity, 5],
-      [Infinity, Infinity, Infinity, Infinity],
+      [Infinity, Infinity, Infinity, Infinity]
     ]);
   });
 });
