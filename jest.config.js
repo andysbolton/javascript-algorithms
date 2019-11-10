@@ -4,6 +4,12 @@ module.exports = {
   // the first failure.
   bail: false,
 
+  globals: {
+    "ts-jest": {
+      babelConfig: true
+    }
+  },
+
   // Indicates whether each individual test should be reported during the run.
   verbose: true,
 
@@ -28,6 +34,7 @@ module.exports = {
   testURL: "http://localhost/",
 
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.jsx?$": "babel-jest"
   }
 };
