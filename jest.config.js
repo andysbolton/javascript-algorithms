@@ -28,11 +28,6 @@ module.exports = {
   // The pattern Jest uses to detect test files.
   testRegex: "(/__tests__/.*|\\.test)\\.ts$",
 
-  // This option sets the URL for the jsdom environment.
-  // It is reflected in properties such as location.href.
-  // @see: https://github.com/facebook/jest/issues/6769
-  testURL: "http://localhost/",
-
   transform: {
     "^.+\\.tsx?$": "ts-jest",
     "^.+\\.jsx?$": "babel-jest"

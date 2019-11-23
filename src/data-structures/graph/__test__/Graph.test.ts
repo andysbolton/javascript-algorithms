@@ -1,7 +1,6 @@
 import Graph from "../Graph";
 import GraphVertex from "../GraphVertex";
 import GraphEdge from "../GraphEdge";
-import checkNull from "../../../utils/checkNull";
 
 describe("Graph", () => {
   it("should add vertices to graph", () => {
@@ -40,13 +39,13 @@ describe("Graph", () => {
 
     expect(graph.getVertexByKey("not existing")).toBeUndefined();
 
-    expect(checkNull(graphVertexA).getNeighbors().length).toBe(1);
-    expect(checkNull(graphVertexA).getNeighbors()[0]).toEqual(vertexB);
-    expect(checkNull(graphVertexA).getNeighbors()[0]).toEqual(graphVertexB);
+    expect(graphVertexA?.getNeighbors().length).toBe(1);
+    expect(graphVertexA?.getNeighbors()[0]).toEqual(vertexB);
+    expect(graphVertexA?.getNeighbors()[0]).toEqual(graphVertexB);
 
-    expect(checkNull(graphVertexB).getNeighbors().length).toBe(1);
-    expect(checkNull(graphVertexB).getNeighbors()[0]).toEqual(vertexA);
-    expect(checkNull(graphVertexB).getNeighbors()[0]).toEqual(graphVertexA);
+    expect(graphVertexB?.getNeighbors().length).toBe(1);
+    expect(graphVertexB?.getNeighbors()[0]).toEqual(vertexA);
+    expect(graphVertexB?.getNeighbors()[0]).toEqual(graphVertexA);
   });
 
   it("should add edges to directed graph", () => {
@@ -66,11 +65,11 @@ describe("Graph", () => {
     expect(graphVertexA).toBeDefined();
     expect(graphVertexB).toBeDefined();
 
-    expect(checkNull(graphVertexA).getNeighbors().length).toBe(1);
-    expect(checkNull(graphVertexA).getNeighbors()[0]).toEqual(vertexB);
-    expect(checkNull(graphVertexA).getNeighbors()[0]).toEqual(graphVertexB);
+    expect(graphVertexA?.getNeighbors().length).toBe(1);
+    expect(graphVertexA?.getNeighbors()[0]).toEqual(vertexB);
+    expect(graphVertexA?.getNeighbors()[0]).toEqual(graphVertexB);
 
-    expect(checkNull(graphVertexB).getNeighbors().length).toBe(0);
+    expect(graphVertexB?.getNeighbors().length).toBe(0);
   });
 
   it("should find edge by vertices in undirected graph", () => {
@@ -93,7 +92,7 @@ describe("Graph", () => {
     expect(graphEdgeCA).toBeUndefined();
     expect(graphEdgeAB).toEqual(edgeAB);
     expect(graphEdgeBA).toEqual(edgeAB);
-    expect(checkNull(graphEdgeAB).weight).toBe(10);
+    expect(graphEdgeAB?.weight).toBe(10);
   });
 
   it("should find edge by vertices in directed graph", () => {
@@ -116,7 +115,7 @@ describe("Graph", () => {
     expect(graphEdgeCA).toBeUndefined();
     expect(graphEdgeBA).toBeUndefined();
     expect(graphEdgeAB).toEqual(edgeAB);
-    expect(checkNull(graphEdgeAB).weight).toBe(10);
+    expect(graphEdgeAB?.weight).toBe(10);
   });
 
   it("should return vertex neighbors", () => {
