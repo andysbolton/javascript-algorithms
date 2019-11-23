@@ -1,14 +1,14 @@
-import GraphVertex from '../../../../data-structures/graph/GraphVertex';
-import GraphEdge from '../../../../data-structures/graph/GraphEdge';
-import Graph from '../../../../data-structures/graph/Graph';
-import stronglyConnectedComponents from '../stronglyConnectedComponents';
+import GraphVertex from "../../../../data-structures/graph/GraphVertex";
+import GraphEdge from "../../../../data-structures/graph/GraphEdge";
+import Graph from "../../../../data-structures/graph/Graph";
+import stronglyConnectedComponents from "../stronglyConnectedComponents";
 
-describe('stronglyConnectedComponents', () => {
-  it('should detect strongly connected components in simple graph', () => {
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
+describe("stronglyConnectedComponents", () => {
+  it("should detect strongly connected components in simple graph", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeBC = new GraphEdge(vertexB, vertexC);
@@ -35,18 +35,18 @@ describe('stronglyConnectedComponents', () => {
     expect(components[1][0].getKey()).toBe(vertexD.getKey());
   });
 
-  it('should detect strongly connected components in graph', () => {
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
-    const vertexE = new GraphVertex('E');
-    const vertexF = new GraphVertex('F');
-    const vertexG = new GraphVertex('G');
-    const vertexH = new GraphVertex('H');
-    const vertexI = new GraphVertex('I');
-    const vertexJ = new GraphVertex('J');
-    const vertexK = new GraphVertex('K');
+  it("should detect strongly connected components in graph", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
+    const vertexE = new GraphVertex("E");
+    const vertexF = new GraphVertex("F");
+    const vertexG = new GraphVertex("G");
+    const vertexH = new GraphVertex("H");
+    const vertexI = new GraphVertex("I");
+    const vertexJ = new GraphVertex("J");
+    const vertexK = new GraphVertex("K");
 
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeBC = new GraphEdge(vertexB, vertexC);

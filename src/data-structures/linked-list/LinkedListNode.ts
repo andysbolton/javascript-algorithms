@@ -1,4 +1,4 @@
-export default class LinkedListNode<T>  {
+export default class LinkedListNode<T> {
   public value: T;
   public key: string = "";
   public next: LinkedListNode<T> | undefined;

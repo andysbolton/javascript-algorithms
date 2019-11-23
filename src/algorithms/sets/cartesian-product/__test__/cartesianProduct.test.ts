@@ -1,7 +1,7 @@
-import cartesianProduct from '../cartesianProduct';
+import cartesianProduct from "../cartesianProduct";
 
-describe('cartesianProduct', () => {
-  it('should return null if there is not enough info for calculation', () => {
+describe("cartesianProduct", () => {
+  it("should return null if there is not enough info for calculation", () => {
     const product1 = cartesianProduct([1], null);
     const product2 = cartesianProduct([], null);
 
@@ -9,7 +9,7 @@ describe('cartesianProduct', () => {
     expect(product2).toBeNull();
   });
 
-  it('should calculate the product of two sets', () => {
+  it("should calculate the product of two sets", () => {
     const product1 = cartesianProduct([1], [1]);
     const product2 = cartesianProduct([1, 2], [3, 5]);
 

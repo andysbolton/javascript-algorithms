@@ -1,8 +1,8 @@
-import LinkedList from '../../../../data-structures/linked-list/LinkedList';
-import traversal from '../traversal';
+import LinkedList from "../../../../data-structures/linked-list/LinkedList";
+import traversal from "../traversal";
 
-describe('traversal', () => {
-  it('should traverse linked list', () => {
+describe("traversal", () => {
+  it("should traverse linked list", () => {
     const linkedList = new LinkedList();
 
     linkedList
@@ -11,7 +11,7 @@ describe('traversal', () => {
       .append(3);
 
     const traversedNodeValues = [];
-    const traversalCallback = (nodeValue) => {
+    const traversalCallback = nodeValue => {
       traversedNodeValues.push(nodeValue);
     };
 

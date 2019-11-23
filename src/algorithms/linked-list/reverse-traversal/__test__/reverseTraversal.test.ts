@@ -1,8 +1,8 @@
-import LinkedList from '../../../../data-structures/linked-list/LinkedList';
-import reverseTraversal from '../reverseTraversal';
+import LinkedList from "../../../../data-structures/linked-list/LinkedList";
+import reverseTraversal from "../reverseTraversal";
 
-describe('reverseTraversal', () => {
-  it('should traverse linked list in reverse order', () => {
+describe("reverseTraversal", () => {
+  it("should traverse linked list in reverse order", () => {
     const linkedList = new LinkedList();
 
     linkedList
@@ -11,7 +11,7 @@ describe('reverseTraversal', () => {
       .append(3);
 
     const traversedNodeValues = [];
-    const traversalCallback = (nodeValue) => {
+    const traversalCallback = nodeValue => {
       traversedNodeValues.push(nodeValue);
     };
 
@@ -20,7 +20,6 @@ describe('reverseTraversal', () => {
     expect(traversedNodeValues).toEqual([3, 2, 1]);
   });
 });
-
 
 // it('should reverse traversal the linked list with callback', () => {
 //   const linkedList = new LinkedList();

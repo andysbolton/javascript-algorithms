@@ -1,6 +1,6 @@
 # Is a power of two
 
-Given a positive integer, write a function to find if it is 
+Given a positive integer, write a function to find if it is
 a power of two or not.
 
 **Naive solution**
@@ -23,8 +23,8 @@ signed integer with a value of -128 looks like: `10000000`)
 8: 1000
 ```
 
-So after checking that the number is greater than zero, 
-we can use a bitwise hack to test that one and only one 
+So after checking that the number is greater than zero,
+we can use a bitwise hack to test that one and only one
 bit is set.
 
 ```
@@ -38,11 +38,11 @@ For example for number `8` that operations will look like:
 - 0001
   ----
   0111
-  
+
   1000
 & 0111
   ----
-  0000    
+  0000
 ```
 
 ## References

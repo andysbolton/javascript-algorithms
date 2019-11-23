@@ -1,18 +1,18 @@
-import GraphVertex from '../../../../data-structures/graph/GraphVertex';
-import GraphEdge from '../../../../data-structures/graph/GraphEdge';
-import Graph from '../../../../data-structures/graph/Graph';
-import bellmanFord from '../bellmanFord';
+import GraphVertex from "../../../../data-structures/graph/GraphVertex";
+import GraphEdge from "../../../../data-structures/graph/GraphEdge";
+import Graph from "../../../../data-structures/graph/Graph";
+import bellmanFord from "../bellmanFord";
 
-describe('bellmanFord', () => {
-  it('should find minimum paths to all vertices for undirected graph', () => {
-    const vertexA = new GraphVertex('A');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexD = new GraphVertex('D');
-    const vertexE = new GraphVertex('E');
-    const vertexF = new GraphVertex('F');
-    const vertexG = new GraphVertex('G');
-    const vertexH = new GraphVertex('H');
+describe("bellmanFord", () => {
+  it("should find minimum paths to all vertices for undirected graph", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexD = new GraphVertex("D");
+    const vertexE = new GraphVertex("E");
+    const vertexF = new GraphVertex("F");
+    const vertexG = new GraphVertex("G");
+    const vertexH = new GraphVertex("H");
 
     const edgeAB = new GraphEdge(vertexA, vertexB, 4);
     const edgeAE = new GraphEdge(vertexA, vertexE, 7);
@@ -53,26 +53,26 @@ describe('bellmanFord', () => {
       C: 3,
       D: 9,
       G: 12,
-      F: 11,
+      F: 11
     });
 
-    expect(previousVertices.F.getKey()).toBe('D');
-    expect(previousVertices.D.getKey()).toBe('B');
-    expect(previousVertices.B.getKey()).toBe('A');
-    expect(previousVertices.G.getKey()).toBe('E');
-    expect(previousVertices.C.getKey()).toBe('A');
+    expect(previousVertices.F.getKey()).toBe("D");
+    expect(previousVertices.D.getKey()).toBe("B");
+    expect(previousVertices.B.getKey()).toBe("A");
+    expect(previousVertices.G.getKey()).toBe("E");
+    expect(previousVertices.C.getKey()).toBe("A");
     expect(previousVertices.A).toBeNull();
     expect(previousVertices.H).toBeNull();
   });
 
-  it('should find minimum paths to all vertices for directed graph with negative edge weights', () => {
-    const vertexS = new GraphVertex('S');
-    const vertexE = new GraphVertex('E');
-    const vertexA = new GraphVertex('A');
-    const vertexD = new GraphVertex('D');
-    const vertexB = new GraphVertex('B');
-    const vertexC = new GraphVertex('C');
-    const vertexH = new GraphVertex('H');
+  it("should find minimum paths to all vertices for directed graph with negative edge weights", () => {
+    const vertexS = new GraphVertex("S");
+    const vertexE = new GraphVertex("E");
+    const vertexA = new GraphVertex("A");
+    const vertexD = new GraphVertex("D");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+    const vertexH = new GraphVertex("H");
 
     const edgeSE = new GraphEdge(vertexS, vertexE, 8);
     const edgeSA = new GraphEdge(vertexS, vertexA, 10);
@@ -104,14 +104,14 @@ describe('bellmanFord', () => {
       B: 5,
       C: 7,
       D: 9,
-      E: 8,
+      E: 8
     });
 
     expect(previousVertices.H).toBeNull();
     expect(previousVertices.S).toBeNull();
-    expect(previousVertices.B.getKey()).toBe('C');
-    expect(previousVertices.C.getKey()).toBe('A');
-    expect(previousVertices.A.getKey()).toBe('D');
-    expect(previousVertices.D.getKey()).toBe('E');
+    expect(previousVertices.B.getKey()).toBe("C");
+    expect(previousVertices.C.getKey()).toBe("A");
+    expect(previousVertices.A.getKey()).toBe("D");
+    expect(previousVertices.D.getKey()).toBe("E");
   });
 });
