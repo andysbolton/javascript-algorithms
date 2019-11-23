@@ -1,4 +1,4 @@
-import { KeyValue } from "./../KeyValue";
+import { KeyValue } from "../../../utils/KeyValue";
 import LinkedList from "../LinkedList";
 
 describe("LinkedList", () => {
@@ -190,6 +190,21 @@ describe("LinkedList", () => {
     linkedList.fromArray([1, 1, 2, 3, 3, 3, 4, 5]);
 
     expect(linkedList.toString()).toBe("1,1,2,3,3,3,4,5");
+  });
+
+  it("should convert linked list to array", () => {
+    const linkedList = new LinkedList();
+    linkedList
+      .append(1)
+      .append(1)
+      .append(2)
+      .append(3)
+      .append(3)
+      .append(3)
+      .append(4)
+      .append(5);
+
+    expect(linkedList.toArray()).toEqual([1, 1, 2, 3, 3, 3, 4, 5]);
   });
 
   it("should reverse linked list", () => {

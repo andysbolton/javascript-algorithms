@@ -135,6 +135,14 @@ export default class LinkedList<T>
     return ret;
   }
 
+  toArray(): Array<T> {
+    let ret = [];
+    for (const node of this) {
+      ret.push(node.value);
+    }
+    return ret;
+  }
+
   fromArray(arr: Array<T>): void {
     for (const val of arr) {
       this.append(val);

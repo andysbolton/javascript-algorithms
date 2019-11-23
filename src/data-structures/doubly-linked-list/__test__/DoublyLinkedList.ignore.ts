@@ -1,4 +1,4 @@
-import { KeyValue } from "../../linked-list/KeyValue";
+import { KeyValue } from "../../../utils/KeyValue";
 import DoublyLinkedList from "../DoublyLinkedList";
 
 describe("DoublyLinkedList", () => {

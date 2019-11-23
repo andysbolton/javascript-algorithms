@@ -1,4 +1,4 @@
-import { KeyValue } from "./../KeyValue";
+import { KeyValue } from "../../../utils/KeyValue";
 import LinkedListNode from "../LinkedListNode";
 
 describe("LinkedListNode", () => {
