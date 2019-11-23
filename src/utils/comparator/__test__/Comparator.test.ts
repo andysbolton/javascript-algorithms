@@ -2,7 +2,7 @@ import Comparator from "../Comparator";
 
 describe("Comparator", () => {
   it("should compare with default comparator function", () => {
-    const comparator = new Comparator();
+    const comparator = new Comparator<number | string>();
 
     expect(comparator.equal(0, 0)).toBe(true);
     expect(comparator.equal(0, 1)).toBe(false);
