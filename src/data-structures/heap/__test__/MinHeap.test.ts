@@ -6,7 +6,7 @@ describe("MinHeap", () => {
     const minHeap = new MinHeap();
 
     expect(minHeap).toBeDefined();
-    expect(minHeap.peek()).toBeNull();
+    expect(minHeap.peek()).toBeUndefined();
     expect(minHeap.isEmpty()).toBe(true);
   });
 
@@ -70,7 +70,7 @@ describe("MinHeap", () => {
     expect(minHeap.poll()).toBe(11);
     expect(minHeap.toString()).toBe("");
 
-    expect(minHeap.poll()).toBeNull();
+    expect(minHeap.poll()).toBeUndefined();
     expect(minHeap.toString()).toBe("");
   });
 
@@ -106,7 +106,7 @@ describe("MinHeap", () => {
     expect(minHeap.find(11)).toEqual([1, 4]);
   });
 
-  it("should be possible to remove items from heap with heapify down", () => {
+  it("should be possible to remove items from heap", () => {
     const minHeap = new MinHeap();
 
     minHeap.add(3);
@@ -123,7 +123,7 @@ describe("MinHeap", () => {
     expect(minHeap.remove(3).peek()).toEqual(10);
   });
 
-  it("should be possible to remove items from heap with heapify up", () => {
+  it("should be possible to remove other items from heap", () => {
     const minHeap = new MinHeap();
 
     minHeap.add(3);
@@ -150,7 +150,7 @@ describe("MinHeap", () => {
   });
 
   it("should be possible to remove items from heap with custom finding comparator", () => {
-    const minHeap = new MinHeap();
+    const minHeap = new MinHeap<string>();
     minHeap.add("dddd");
     minHeap.add("ccc");
     minHeap.add("bb");

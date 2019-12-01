@@ -5,7 +5,7 @@ describe("MaxHeap", () => {
     const maxHeap = new MaxHeap();
 
     expect(maxHeap).toBeDefined();
-    expect(maxHeap.peek()).toBeNull();
+    expect(maxHeap.peek()).toBeUndefined();
     expect(maxHeap.isEmpty()).toBe(true);
   });
 
@@ -69,7 +69,7 @@ describe("MaxHeap", () => {
     expect(maxHeap.poll()).toBe(1);
     expect(maxHeap.toString()).toBe("");
 
-    expect(maxHeap.poll()).toBeNull();
+    expect(maxHeap.poll()).toBeUndefined();
     expect(maxHeap.toString()).toBe("");
   });
 
