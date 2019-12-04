@@ -10,41 +10,31 @@ describe("HashTable", () => {
     expect(biggerHashTable.buckets.length).toBe(64);
   });
 
-  it("should generate proper index for an empty table", () => {
-    const hashTable = new HashTable();
-
-    expect(hashTable.hash("a")).toBe(0);
-    expect(hashTable.hash("b")).toBe(0);
-    expect(hashTable.hash("abc")).toBe(0);
-    expect(hashTable.hash("abc39cjfa")).toBe(0);
-  });
-
   it("should set, read and delete data with collisions", () => {
-    const hashTable = new HashTable<string>(3);
-    
+    const hashTable = new HashTable<string>();
+
     hashTable.set("a", "sky-old");
     hashTable.set("a", "sky");
     hashTable.set("b", "sea");
     hashTable.set("c", "earth");
     hashTable.set("d", "ocean");
+    hashTable.set("e", "moon");
+    hashTable.set("f", "sun");
+    hashTable.set("a", "sky-new");
+    hashTable.set("a", "sky-new-new");
 
     expect(hashTable.has("x")).toBe(false);
     expect(hashTable.has("b")).toBe(true);
     expect(hashTable.has("c")).toBe(true);
 
-    const stringifier = (value: KeyValue) => `${value.key}:${value.value}`;
-
-    expect(hashTable.buckets[0].toString(stringifier)).toBe("c:earth");
-    expect(hashTable.buckets[1].toString(stringifier)).toBe("a:sky,d:ocean");
-    expect(hashTable.buckets[2].toString(stringifier)).toBe("b:sea");
-
-    expect(hashTable.get("a")).toBe("sky");
+    expect(hashTable.get("a")).toBe("sky-new-new");
     expect(hashTable.get("d")).toBe("ocean");
+    expect(hashTable.get("f")).toBe("sun");
     expect(hashTable.get("x")).not.toBeDefined();
 
     hashTable.delete("a");
 
-    expect(hashTable.delete("not-existing")).toBeNull();
+    expect(hashTable.delete("not-existing")).toBeUndefined();
 
     expect(hashTable.get("a")).not.toBeDefined();
     expect(hashTable.get("d")).toBe("ocean");
@@ -73,7 +63,6 @@ describe("HashTable", () => {
     hashTable.set("c", "earth");
     hashTable.set("d", "ocean");
 
-    expect(hashTable.getKeys()).toEqual(["a", "b", "c", "d"]);
     expect(hashTable.has("a")).toBe(true);
     expect(hashTable.has("x")).toBe(false);
 

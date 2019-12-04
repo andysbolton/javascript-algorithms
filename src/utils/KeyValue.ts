@@ -1,1 +1,1 @@
-export type KeyValue = { value: number | string; key?: string };
+export type KeyValue<T> = { value: T; key?: string };
